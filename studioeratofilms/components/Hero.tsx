@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -10,6 +10,8 @@ import {
   Globe2,
   Sparkles,
   ArrowUpRight,
+  Camera,
+  Star,
 } from "lucide-react";
 
 /**
@@ -20,7 +22,7 @@ import {
  * Right: Luxury typography ("Luxury Wedding Stories. Beautifully Captured.")
  *        with rose-pink script accent, glowing pill CTA, social proof avatars,
  *        and 4 frosted feature cards.
- * Bottom: Full-width rounded stats capsule (200+ Stories, 11+ Years, 4.9 ★ Ratings).
+ * Bottom: Full-width rounded stats capsule (200+ Stories, 4.9 ★ Ratings).
  */
 
 // Curated 24 high-res wedding photos from public/media/ (optimized WebP)
@@ -59,7 +61,7 @@ const COL_3_PHOTOS = [
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
+
 
   return (
     <section
@@ -114,8 +116,7 @@ export default function Hero() {
             borderRadius: "16px",
           }}
           className="hero-columns-container"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+
         >
           <div
             style={{
@@ -130,9 +131,6 @@ export default function Hero() {
             <div className="hero-column-wrapper">
               <div
                 className="hero-column-track hero-track-up-1"
-                style={{
-                  animationPlayState: isHovered ? "paused" : "running",
-                }}
               >
                 {[...COL_1_PHOTOS, ...COL_1_PHOTOS].map((src, i) => (
                   <div
@@ -167,9 +165,6 @@ export default function Hero() {
             <div className="hero-column-wrapper">
               <div
                 className="hero-column-track hero-track-down-2"
-                style={{
-                  animationPlayState: isHovered ? "paused" : "running",
-                }}
               >
                 {[...COL_2_PHOTOS, ...COL_2_PHOTOS].map((src, i) => (
                   <div
@@ -204,9 +199,6 @@ export default function Hero() {
             <div className="hero-column-wrapper">
               <div
                 className="hero-column-track hero-track-up-3"
-                style={{
-                  animationPlayState: isHovered ? "paused" : "running",
-                }}
               >
                 {[...COL_3_PHOTOS, ...COL_3_PHOTOS].map((src, i) => (
                   <div
@@ -510,151 +502,195 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Large Bottom Stats Capsule (Pill Matching Piixonova 1:1) ── */}
+      {/* ── Refined Luxury Bottom Stats Capsule ── */}
       <div
         style={{
-          width: "calc(100% - clamp(2rem, 5vw, 5rem))",
-          maxWidth: "1540px",
-          margin: "1.5rem auto 0",
-          backgroundColor: "rgba(255, 255, 255, 0.52)",
-          border: "1px solid rgba(255, 255, 255, 0.85)",
+          width: "calc(100% - clamp(2rem, 5vw, 4rem))",
+          maxWidth: "960px",
+          margin: "1.75rem auto 0",
+          background:
+            "linear-gradient(135deg, rgba(255, 255, 255, 0.76) 0%, rgba(250, 248, 243, 0.68) 100%)",
+          border: "1px solid rgba(255, 255, 255, 0.95)",
           borderRadius: "999px",
-          padding: "1rem clamp(1.5rem, 4vw, 3.5rem)",
+          padding: "1rem clamp(1.5rem, 3.5vw, 3rem)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backdropFilter: "blur(14px)",
-          WebkitBackdropFilter: "blur(14px)",
-          boxShadow: "0 10px 36px -12px rgba(0,0,0,0.06)",
+          gap: "clamp(1.5rem, 3vw, 3rem)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          boxShadow:
+            "0 18px 45px -12px rgba(23, 22, 19, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.95)",
           position: "relative",
           zIndex: 10,
+          transition: "transform 0.3s ease, box-shadow 0.3s ease",
         }}
         className="hero-stats-capsule"
       >
-        {/* Section 01: 200+ Handcrafted wedding stories */}
-        <div className="hero-stats-item" style={{ display: "flex", alignItems: "baseline", gap: "12px", flex: 1 }}>
-          <span
+        {/* Stat 01: 200+ Handcrafted wedding stories */}
+        <div
+          className="hero-stats-item"
+          style={{ display: "flex", alignItems: "center", gap: "16px", flex: 1 }}
+        >
+          <div
+            className="hero-stat-badge"
             style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(2.2rem, 3.2vw, 3rem)",
-              fontWeight: 400,
-              color: "#171613",
-              lineHeight: 1,
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              background:
+                "linear-gradient(135deg, rgba(185, 151, 91, 0.14), rgba(185, 151, 91, 0.04))",
+              border: "1px solid rgba(185, 151, 91, 0.28)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#A38044",
+              flexShrink: 0,
             }}
           >
-            200+
-          </span>
-          <span
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.82rem",
-              color: "#6b665e",
-              maxWidth: "140px",
-              lineHeight: 1.35,
-            }}
-          >
-            Handcrafted wedding stories told.
-          </span>
+            <Camera size={22} strokeWidth={1.75} />
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
+              <span
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2.1rem, 2.8vw, 2.75rem)",
+                  fontWeight: 400,
+                  color: "#171613",
+                  lineHeight: 1,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                200+
+              </span>
+              <span
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "0.72rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "#B9975B",
+                }}
+              >
+                Stories
+              </span>
+            </div>
+            <span
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.84rem",
+                color: "#5c574e",
+                lineHeight: 1.3,
+                marginTop: "2px",
+              }}
+            >
+              Handcrafted wedding stories told across India
+            </span>
+          </div>
         </div>
 
-        {/* Divider */}
+        {/* Center Luxury Ornamental Divider */}
         <div
+          className="stats-divider-wrapper"
           style={{
-            width: "1px",
-            height: "40px",
-            backgroundColor: "rgba(23, 22, 19, 0.12)",
-            marginInline: "1.5rem",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            color: "rgba(185, 151, 91, 0.6)",
+            flexShrink: 0,
           }}
-          className="stats-divider"
-        />
-
-        {/* Section 02: 11+ Years of Capturing Raw Emotions */}
-        <div className="hero-stats-item" style={{ textAlign: "center", flex: 1.4, display: "flex", justifyContent: "center" }}>
-          <span
+        >
+          <div
             style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.4rem, 2.2vw, 2.1rem)",
-              fontWeight: 400,
-              color: "#171613",
-              lineHeight: 1.2,
+              width: "36px",
+              height: "1px",
+              background:
+                "linear-gradient(to right, transparent, rgba(185, 151, 91, 0.4))",
             }}
-          >
-            11+ Years of Capturing Raw Emotions
-          </span>
+          />
+          <span style={{ fontSize: "14px", lineHeight: 1, color: "#B9975B" }}>✦</span>
+          <div
+            style={{
+              width: "36px",
+              height: "1px",
+              background:
+                "linear-gradient(to left, transparent, rgba(185, 151, 91, 0.4))",
+            }}
+          />
         </div>
 
-        {/* Divider */}
+        {/* Stat 02: 4.9 ★ 320+ Testimonials */}
         <div
+          className="hero-stats-item"
           style={{
-            width: "1px",
-            height: "40px",
-            backgroundColor: "rgba(23, 22, 19, 0.12)",
-            marginInline: "1.5rem",
+            display: "flex",
+            alignItems: "center",
+            gap: "16px",
+            flex: 1,
+            justifyContent: "flex-end",
           }}
-          className="stats-divider"
-        />
-
-        {/* Section 03: 4.9 ★ 320+ Testimonials */}
-        <div className="hero-stats-item" style={{ display: "flex", alignItems: "baseline", gap: "12px", flex: 1, justifyContent: "flex-end" }}>
-          <span
+        >
+          <div
+            className="hero-stat-badge"
             style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(2.2rem, 3.2vw, 3rem)",
-              fontWeight: 400,
-              color: "#171613",
-              lineHeight: 1,
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              background:
+                "linear-gradient(135deg, rgba(185, 151, 91, 0.14), rgba(185, 151, 91, 0.04))",
+              border: "1px solid rgba(185, 151, 91, 0.28)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#A38044",
+              flexShrink: 0,
             }}
           >
-            4.9 ★
-          </span>
-          <span
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.82rem",
-              color: "#6b665e",
-              maxWidth: "140px",
-              lineHeight: 1.35,
-            }}
-          >
-            320+ Testimonials by Happy Couples
-          </span>
+            <Star size={22} strokeWidth={1.75} fill="#B9975B" color="#B9975B" />
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
+              <span
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2.1rem, 2.8vw, 2.75rem)",
+                  fontWeight: 400,
+                  color: "#171613",
+                  lineHeight: 1,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                4.9
+              </span>
+              <span
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "0.72rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "#B9975B",
+                }}
+              >
+                Rating
+              </span>
+            </div>
+            <span
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.84rem",
+                color: "#5c574e",
+                lineHeight: 1.3,
+                marginTop: "2px",
+              }}
+            >
+              320+ Kind reviews from happy couples
+            </span>
+          </div>
         </div>
       </div>
-
-      {/* Floating WhatsApp Button */}
-      <a
-        href="https://wa.me/918383850942"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp"
-        style={{
-          position: "fixed",
-          right: "28px",
-          bottom: "28px",
-          width: "52px",
-          height: "52px",
-          borderRadius: "50%",
-          backgroundColor: "#25D366",
-          color: "#ffffff",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 6px 20px rgba(37,211,102,0.4)",
-          zIndex: 90,
-          transition: "transform 0.3s ease, box-shadow 0.3s ease",
-        }}
-        className="whatsapp-float-btn"
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.transform = "scale(1.08)";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-        }}
-      >
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-        </svg>
-      </a>
 
       {/* Embedded Styles for Marquee Motion and Piixonova Elements */}
       <style>{`
@@ -740,119 +776,184 @@ export default function Hero() {
 
         @media (max-width: 1023px) {
           #hero {
-            padding-top: clamp(4.25rem, 8vh, 5.25rem) !important;
-            padding-bottom: 2.25rem !important;
+            padding-top: clamp(4.5rem, 8vh, 5.5rem) !important;
+            padding-bottom: 1rem !important;
+            min-height: auto !important;
           }
           .hero-main-container {
             flex-direction: column !important;
-            align-items: stretch !important;
-            gap: 1.5rem !important;
+            align-items: center !important;
+            gap: 1.25rem !important;
           }
-          .hero-copy-wrapper {
+
+          /* 1. MOVING PHOTOS ON TOP — shorter height like Piixonova mobile */
+          .hero-columns-container {
             order: 1 !important;
             width: 100% !important;
             max-width: 100% !important;
+            flex: none !important;
+            height: 300px !important;
+            border-radius: 14px !important;
+            margin: 0 auto !important;
+          }
+
+          .hero-columns-grid {
+            gap: 8px !important;
+          }
+
+          /* 2. TEXT CONTENT BELOW PHOTOS (Centered, compact) */
+          .hero-copy-wrapper {
+            order: 2 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: none !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 0 !important;
           }
           .hero-title {
-            font-size: clamp(34px, 8.4vw, 54px) !important;
-            line-height: 1.08 !important;
-            margin-bottom: 0.85rem !important;
+            font-size: clamp(30px, 8vw, 44px) !important;
+            line-height: 1.1 !important;
+            margin-bottom: 0.6rem !important;
+            text-align: center !important;
           }
           .hero-subtitles {
-            margin-bottom: 1.15rem !important;
-            gap: 4px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            margin-bottom: 1rem !important;
+            gap: 3px !important;
           }
           .hero-subtitles p:first-child {
-            font-size: clamp(13.5px, 3.6vw, 16px) !important;
+            font-size: clamp(13px, 3.6vw, 15px) !important;
+            text-align: center !important;
           }
           .hero-subtitles p:last-child {
-            font-size: clamp(11.5px, 3vw, 14px) !important;
+            font-size: clamp(11px, 3vw, 13px) !important;
+            text-align: center !important;
           }
           .hero-cta-group {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
             gap: 14px !important;
-            margin-bottom: 1.15rem !important;
+            margin-bottom: 0.75rem !important;
+            width: 100% !important;
           }
           .hero-piixo-btn {
-            padding: 12px 24px !important;
-            font-size: 0.76rem !important;
+            padding: 12px 30px !important;
+            font-size: 0.75rem !important;
           }
           .hero-social-proof {
-            margin-bottom: 1.25rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-bottom: 1rem !important;
+            width: 100% !important;
           }
           .hero-social-proof span {
             font-size: 0.76rem !important;
           }
+
+          /* 3. FEATURE CARDS - HORIZONTAL SCROLL ROW */
           .hero-feature-cards {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 8px !important;
-          }
-          .hero-feature-card {
-            padding: 10px 8px !important;
-            gap: 6px !important;
-          }
-          .hero-feature-card span {
-            font-size: 10.5px !important;
-          }
-          .hero-columns-container {
-            order: 2 !important;
-            max-width: 100% !important;
-            height: 310px !important;
-            border-radius: 12px !important;
-            margin-top: 0.5rem !important;
-          }
-          .hero-stats-capsule {
+            display: flex !important;
             flex-direction: row !important;
-            flex-wrap: wrap !important;
-            border-radius: 20px !important;
-            gap: 1rem !important;
-            padding: 1.15rem 1.25rem !important;
-            align-items: center !important;
-            justifyContent: space-around !important;
+            overflow-x: auto !important;
+            scrollbar-width: none !important;
+            -webkit-overflow-scrolling: touch !important;
+            gap: 8px !important;
+            width: calc(100% + 2 * var(--gutter)) !important;
+            margin-left: calc(-1 * var(--gutter)) !important;
+            margin-right: calc(-1 * var(--gutter)) !important;
+            padding: 4px var(--gutter) 10px var(--gutter) !important;
+            scroll-snap-type: x mandatory !important;
           }
-          .stats-divider {
+          .hero-feature-cards::-webkit-scrollbar {
             display: none !important;
           }
-          .whatsapp-float-btn {
-            right: 18px !important;
-            bottom: 18px !important;
-            width: 46px !important;
-            height: 46px !important;
+          .hero-feature-card {
+            flex: 0 0 auto !important;
+            width: clamp(110px, 28vw, 130px) !important;
+            height: 88px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            scroll-snap-align: start !important;
+            padding: 8px 6px !important;
+            gap: 5px !important;
+            border-radius: 14px !important;
+            background-color: rgba(255, 255, 255, 0.72) !important;
+            border: 1px solid rgba(255, 255, 255, 0.9) !important;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important;
           }
-          .whatsapp-float-btn svg {
-            width: 24px !important;
-            height: 24px !important;
+          .hero-feature-card span {
+            font-size: 10px !important;
+            line-height: 1.2 !important;
+            text-align: center !important;
+          }
+
+          .hero-stats-capsule {
+            gap: 1.25rem !important;
+            margin-top: 1rem !important;
+          }
+        }
+
+        .hero-stats-capsule:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 24px 54px -12px rgba(23, 22, 19, 0.12), 0 4px 12px rgba(0, 0, 0, 0.03), inset 0 1px 1px rgba(255, 255, 255, 1) !important;
+        }
+
+        @media (max-width: 768px) {
+          .hero-stats-capsule {
+            flex-direction: column !important;
+            border-radius: 24px !important;
+            padding: 1rem 1.25rem !important;
+            gap: 0.9rem !important;
+            max-width: 480px !important;
+            width: calc(100% - 2 * var(--gutter)) !important;
+          }
+          .hero-stats-item {
+            width: 100% !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+          }
+          .stats-divider-wrapper {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+          .stats-divider-wrapper div {
+            width: 60px !important;
           }
         }
 
         @media (max-width: 640px) {
-          .hero-title {
-            font-size: clamp(30px, 8vw, 42px) !important;
-          }
           .hero-columns-container {
-            height: 250px !important;
+            height: 240px !important;
+          }
+          .hero-title {
+            font-size: clamp(26px, 7.5vw, 36px) !important;
+          }
+          .hero-feature-card {
+            width: 110px !important;
+            height: 82px !important;
           }
           .hero-stats-capsule {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 0.5rem !important;
-            padding: 0.85rem !important;
-            border-radius: 16px !important;
-            width: calc(100% - 2 * var(--gutter)) !important;
+            padding: 0.85rem 1rem !important;
+            border-radius: 18px !important;
+            gap: 0.75rem !important;
           }
-          .hero-stats-item {
-            flex-direction: column !important;
-            align-items: center !important;
-            text-align: center !important;
-            gap: 2px !important;
+          .hero-stat-badge {
+            width: 38px !important;
+            height: 38px !important;
           }
-          .hero-stats-item span:first-child {
-            font-size: 1.5rem !important;
-          }
-          .hero-stats-item span:last-child {
-            font-size: 0.65rem !important;
-            max-width: 100% !important;
-            line-height: 1.2 !important;
-            text-align: center !important;
+          .hero-stat-badge svg {
+            width: 16px !important;
+            height: 16px !important;
           }
         }
       `}</style>

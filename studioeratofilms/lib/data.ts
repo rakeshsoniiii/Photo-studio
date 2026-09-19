@@ -30,6 +30,25 @@ export const studioInfo = {
   canonNote: "Educator @canonindia_official",
 };
 
+// ─── WhatsApp Configuration ────────────────────────────────────────────────
+/**
+ * WhatsApp Floating Button Options
+ * - enabled: Master toggle to show/hide the WhatsApp button across the site
+ * - hideOnMobile: Set true to hide on mobile devices (< 768px)
+ * - hideOnDesktop: Set true to hide on desktop devices (>= 768px)
+ * - allowDismiss: Allows visitors to close/dismiss the floating button
+ */
+export const whatsappConfig = {
+  enabled: true,
+  hideOnMobile: false,
+  hideOnDesktop: false,
+  phoneNumber: "918383850942",
+  defaultMessage:
+    "Hello Studio Erato Films! I would like to inquire about wedding photography and films.",
+  allowDismiss: true,
+  tooltipText: "Chat on WhatsApp",
+};
+
 // ─── Stats ──────────────────────────────────────────────────────────────────
 export const stats = [
   { value: "30", label: "Weddings Per Year" },

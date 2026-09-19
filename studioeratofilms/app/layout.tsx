@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import CustomCursor from "@/components/CustomCursor";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "Studio Erato Films — Destination Weddings & Bespoke Films",
@@ -52,6 +53,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <CustomCursor />
           {children}
+          <WhatsAppButton />
         </SmoothScrollProvider>
       </body>
     </html>
