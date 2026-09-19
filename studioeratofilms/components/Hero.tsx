@@ -275,23 +275,41 @@ export default function Hero() {
             <span>Beautifully Captured.</span>
           </h1>
 
-          {/* Subtitle with destinations bolded */}
-          <p
+          {/* Subtitle — Studio Erato Brand Description */}
+          <div
             style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(14px, 1.05vw, 16.5px)",
-              lineHeight: 1.6,
-              color: "rgba(23, 22, 19, 0.72)",
+              display: "flex",
+              flexDirection: "column",
+              gap: "6px",
               maxWidth: "520px",
               marginBottom: "clamp(1.5rem, 2.5vh, 2rem)",
             }}
           >
-            Globally recognized Wedding Photographers &amp; Filmmakers crafting personalized wedding stories. Worked across{" "}
-            <strong style={{ color: "#171613", fontWeight: 600 }}>India</strong>,{" "}
-            <strong style={{ color: "#171613", fontWeight: 600 }}>UAE</strong>,{" "}
-            <strong style={{ color: "#171613", fontWeight: 600 }}>UK</strong>,{" "}
-            <strong style={{ color: "#171613", fontWeight: 600 }}>Worldwide</strong>.
-          </p>
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(15px, 1.1vw, 18px)",
+                fontWeight: 500,
+                lineHeight: 1.5,
+                color: "#171613",
+                letterSpacing: "0.02em",
+              }}
+            >
+              Documentary &amp; Editorial Style Photography
+            </p>
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(13px, 0.95vw, 15px)",
+                fontWeight: 400,
+                lineHeight: 1.5,
+                color: "rgba(23, 22, 19, 0.68)",
+                letterSpacing: "0.04em",
+              }}
+            >
+              Studio Erato Films | Destination Weddings &amp; Bespoke Films
+            </p>
+          </div>
 
           {/* Glowing Rose-Pink Pill CTA Button (Matching Piixonova) */}
           <div
