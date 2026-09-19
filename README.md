@@ -2,7 +2,6 @@
 
 ## Studio Erato Films — Destination Weddings & Bespoke Films
 
-A luxury destination wedding photography and bespoke cinematography website inspired by high-end editorial publications and [Piixonova](https://piixonova.com/).
 
 ### ✨ Key Features
 - **Editorial Hero Section**: 3 continuously moving vertical photo columns with smooth infinite looping marquee animations showcasing curated high-resolution wedding photography.
