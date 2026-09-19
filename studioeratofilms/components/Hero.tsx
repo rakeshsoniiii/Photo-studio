@@ -253,6 +253,7 @@ export default function Hero() {
         >
           {/* Piixonova-style Headline: Luxury Wedding Stories. Beautifully Captured. */}
           <h1
+            className="hero-title"
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(46px, 4.8vw, 84px)",
@@ -280,6 +281,7 @@ export default function Hero() {
 
           {/* Subtitle — Studio Erato Brand Description */}
           <div
+            className="hero-subtitles"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -316,6 +318,7 @@ export default function Hero() {
 
           {/* Glowing Rose-Pink Pill CTA Button (Matching Piixonova) */}
           <div
+            className="hero-cta-group"
             style={{
               display: "flex",
               alignItems: "center",
@@ -384,6 +387,7 @@ export default function Hero() {
 
           {/* Social Proof — Overlapping Couple Avatars & Rating */}
           <div
+            className="hero-social-proof"
             style={{
               display: "flex",
               alignItems: "center",
@@ -528,7 +532,7 @@ export default function Hero() {
         className="hero-stats-capsule"
       >
         {/* Section 01: 200+ Handcrafted wedding stories */}
-        <div style={{ display: "flex", alignItems: "baseline", gap: "12px", flex: 1 }}>
+        <div className="hero-stats-item" style={{ display: "flex", alignItems: "baseline", gap: "12px", flex: 1 }}>
           <span
             style={{
               fontFamily: "var(--font-display)",
@@ -565,7 +569,7 @@ export default function Hero() {
         />
 
         {/* Section 02: 11+ Years of Capturing Raw Emotions */}
-        <div style={{ textAlign: "center", flex: 1.4 }}>
+        <div className="hero-stats-item" style={{ textAlign: "center", flex: 1.4, display: "flex", justifyContent: "center" }}>
           <span
             style={{
               fontFamily: "var(--font-display)",
@@ -591,7 +595,7 @@ export default function Hero() {
         />
 
         {/* Section 03: 4.9 ★ 320+ Testimonials */}
-        <div style={{ display: "flex", alignItems: "baseline", gap: "12px", flex: 1, justifyContent: "flex-end" }}>
+        <div className="hero-stats-item" style={{ display: "flex", alignItems: "baseline", gap: "12px", flex: 1, justifyContent: "flex-end" }}>
           <span
             style={{
               fontFamily: "var(--font-display)",
@@ -735,27 +739,120 @@ export default function Hero() {
         }
 
         @media (max-width: 1023px) {
+          #hero {
+            padding-top: clamp(4.25rem, 8vh, 5.25rem) !important;
+            padding-bottom: 2.25rem !important;
+          }
           .hero-main-container {
-            flex-direction: column-reverse !important;
+            flex-direction: column !important;
             align-items: stretch !important;
-            gap: 2.5rem !important;
+            gap: 1.5rem !important;
+          }
+          .hero-copy-wrapper {
+            order: 1 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .hero-title {
+            font-size: clamp(34px, 8.4vw, 54px) !important;
+            line-height: 1.08 !important;
+            margin-bottom: 0.85rem !important;
+          }
+          .hero-subtitles {
+            margin-bottom: 1.15rem !important;
+            gap: 4px !important;
+          }
+          .hero-subtitles p:first-child {
+            font-size: clamp(13.5px, 3.6vw, 16px) !important;
+          }
+          .hero-subtitles p:last-child {
+            font-size: clamp(11.5px, 3vw, 14px) !important;
+          }
+          .hero-cta-group {
+            gap: 14px !important;
+            margin-bottom: 1.15rem !important;
+          }
+          .hero-piixo-btn {
+            padding: 12px 24px !important;
+            font-size: 0.76rem !important;
+          }
+          .hero-social-proof {
+            margin-bottom: 1.25rem !important;
+          }
+          .hero-social-proof span {
+            font-size: 0.76rem !important;
+          }
+          .hero-feature-cards {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 8px !important;
+          }
+          .hero-feature-card {
+            padding: 10px 8px !important;
+            gap: 6px !important;
+          }
+          .hero-feature-card span {
+            font-size: 10.5px !important;
           }
           .hero-columns-container {
+            order: 2 !important;
             max-width: 100% !important;
-            height: 480px !important;
+            height: 310px !important;
+            border-radius: 12px !important;
+            margin-top: 0.5rem !important;
           }
           .hero-stats-capsule {
-            flex-direction: column !important;
-            border-radius: 24px !important;
-            gap: 1.25rem !important;
-            padding: 1.5rem !important;
-            align-items: flex-start !important;
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            border-radius: 20px !important;
+            gap: 1rem !important;
+            padding: 1.15rem 1.25rem !important;
+            align-items: center !important;
+            justifyContent: space-around !important;
           }
           .stats-divider {
             display: none !important;
           }
-          .hero-feature-cards {
-            grid-template-columns: repeat(2, 1fr) !important;
+          .whatsapp-float-btn {
+            right: 18px !important;
+            bottom: 18px !important;
+            width: 46px !important;
+            height: 46px !important;
+          }
+          .whatsapp-float-btn svg {
+            width: 24px !important;
+            height: 24px !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .hero-title {
+            font-size: clamp(30px, 8vw, 42px) !important;
+          }
+          .hero-columns-container {
+            height: 250px !important;
+          }
+          .hero-stats-capsule {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 0.5rem !important;
+            padding: 0.85rem !important;
+            border-radius: 16px !important;
+            width: calc(100% - 2 * var(--gutter)) !important;
+          }
+          .hero-stats-item {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            gap: 2px !important;
+          }
+          .hero-stats-item span:first-child {
+            font-size: 1.5rem !important;
+          }
+          .hero-stats-item span:last-child {
+            font-size: 0.65rem !important;
+            max-width: 100% !important;
+            line-height: 1.2 !important;
+            text-align: center !important;
           }
         }
       `}</style>

@@ -55,7 +55,6 @@
 }
 
 html {
-  /* Remove native smooth scroll — Lenis handles it */
   scroll-behavior: auto;
   -webkit-text-size-adjust: 100%;
   overflow-x: clip;
@@ -69,6 +68,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
+}
+
+@media (pointer: coarse) {
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
 }
 
 /* Hide Next.js dev indicator badge in bottom left */

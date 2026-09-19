@@ -95,9 +95,10 @@ export default function Header({ onMenuOpen, menuOpen }: HeaderProps) {
         pointerEvents: menuOpen ? "none" : "auto",
       }}
     >
-      {/* Left — Contact */}
+      {/* Left — Contact (Desktop) */}
       <a
         href="#contact"
+        className="header-left-contact"
         style={{
           fontFamily: "var(--font-body)",
           fontSize: "0.72rem",
@@ -109,7 +110,6 @@ export default function Header({ onMenuOpen, menuOpen }: HeaderProps) {
           opacity: 0.85,
           transition: "opacity 0.25s ease",
           pointerEvents: menuOpen ? "none" : "auto",
-          display: "flex",
           alignItems: "center",
           gap: "8px",
         }}
@@ -129,25 +129,23 @@ export default function Header({ onMenuOpen, menuOpen }: HeaderProps) {
         Contact
       </a>
 
-      {/* Center — Official Logo & Wordmark */}
+      {/* Brand Logo & Wordmark — Centered on Desktop, Left on Mobile */}
       <a
         href="/"
         aria-label="Studio Erato Films — Home"
+        className="header-brand-link"
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "10px",
+          gap: "8px",
           textDecoration: "none",
-          position: "absolute",
-          left: "50%",
-          transform: "translateX(-50%)",
         }}
       >
         <div
           style={{
             position: "relative",
-            width: "32px",
-            height: "32px",
+            width: "30px",
+            height: "30px",
             borderRadius: "4px",
             overflow: "hidden",
             backgroundColor: "#000",
@@ -157,90 +155,158 @@ export default function Header({ onMenuOpen, menuOpen }: HeaderProps) {
           }}
         >
           <Image
-            src="/media/logo.jpg"
+            src="/media/logo.webp"
             alt="Studio Erato Films Logo"
             fill
-            sizes="32px"
+            sizes="30px"
             style={{ objectFit: "contain" }}
           />
         </div>
         <span
+          className="header-brand-title"
           style={{
             fontFamily: "var(--font-body)",
-            fontSize: "0.74rem",
+            fontSize: "0.72rem",
             fontWeight: 600,
-            letterSpacing: "0.28em",
+            letterSpacing: "0.26em",
             textTransform: "uppercase",
             color: "inherit",
+            whiteSpace: "nowrap",
           }}
         >
           Studio Erato
         </span>
       </a>
 
-      {/* Right — Menu trigger */}
-      <button
-        onClick={onMenuOpen}
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
-        aria-expanded={menuOpen}
-        aria-controls="fullscreen-menu"
+      {/* Right Group — Mobile Contact + Menu */}
+      <div
+        className="header-right-group"
         style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.68rem",
-          fontWeight: 400,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: "inherit",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          opacity: 0.8,
-          transition: "opacity 0.25s ease",
           display: "flex",
           alignItems: "center",
-          gap: "0.5rem",
-          padding: 0,
+          gap: "clamp(0.85rem, 2vw, 1.25rem)",
         }}
-        onMouseEnter={(e) =>
-          ((e.currentTarget as HTMLElement).style.opacity = "1")
-        }
-        onMouseLeave={(e) =>
-          ((e.currentTarget as HTMLElement).style.opacity = "0.8")
-        }
       >
-        Menu
-        <span
-          aria-hidden="true"
+        {/* Mobile Contact Link */}
+        <a
+          href="#contact"
+          className="header-mobile-contact"
           style={{
-            display: "block",
-            width: "1.4rem",
-            position: "relative",
+            fontFamily: "var(--font-body)",
+            fontSize: "0.68rem",
+            fontWeight: 500,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: "inherit",
+            textDecoration: "none",
+            opacity: 0.85,
+            transition: "opacity 0.25s ease",
+            pointerEvents: menuOpen ? "none" : "auto",
+            alignItems: "center",
+            gap: "5px",
           }}
         >
-          {/* Hamburger lines */}
+          Contact
+        </a>
+
+        {/* Menu trigger */}
+        <button
+          onClick={onMenuOpen}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="fullscreen-menu"
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "0.68rem",
+            fontWeight: 400,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "inherit",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            opacity: 0.8,
+            transition: "opacity 0.25s ease",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            padding: 0,
+          }}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLElement).style.opacity = "1")
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLElement).style.opacity = "0.8")
+          }
+        >
+          Menu
           <span
+            aria-hidden="true"
             style={{
               display: "block",
-              width: "100%",
-              height: "1px",
-              backgroundColor: "currentColor",
-              marginBottom: "4px",
-              transition: "transform 0.3s ease, opacity 0.3s ease",
-              transform: menuOpen ? "translateY(3px) rotate(45deg)" : "none",
+              width: "1.4rem",
+              position: "relative",
             }}
-          />
-          <span
-            style={{
-              display: "block",
-              width: "70%",
-              height: "1px",
-              backgroundColor: "currentColor",
-              transition: "transform 0.3s ease, opacity 0.3s ease",
-              transform: menuOpen ? "translateY(-2px) rotate(-45deg) scaleX(1.43)" : "none",
-            }}
-          />
-        </span>
-      </button>
+          >
+            {/* Hamburger lines */}
+            <span
+              style={{
+                display: "block",
+                width: "100%",
+                height: "1px",
+                backgroundColor: "currentColor",
+                marginBottom: "4px",
+                transition: "transform 0.3s ease, opacity 0.3s ease",
+                transform: menuOpen ? "translateY(3px) rotate(45deg)" : "none",
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                width: "70%",
+                height: "1px",
+                backgroundColor: "currentColor",
+                transition: "transform 0.3s ease, opacity 0.3s ease",
+                transform: menuOpen ? "translateY(-2px) rotate(-45deg) scaleX(1.43)" : "none",
+              }}
+            />
+          </span>
+        </button>
+      </div>
+
+      <style>{`
+        .header-left-contact {
+          display: flex;
+        }
+        .header-brand-link {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .header-mobile-contact {
+          display: none;
+        }
+
+        @media (max-width: 767px) {
+          header {
+            padding: 1rem var(--gutter) !important;
+          }
+          .header-left-contact {
+            display: none !important;
+          }
+          .header-brand-link {
+            position: static !important;
+            transform: none !important;
+          }
+          .header-mobile-contact {
+            display: flex !important;
+          }
+          .header-brand-title {
+            font-size: 0.66rem !important;
+            letter-spacing: 0.18em !important;
+          }
+        }
+      `}</style>
     </header>
   );
 }

@@ -36,12 +36,21 @@ export async function initLenis(): Promise<Lenis | null> {
 
   gsap.registerPlugin(ScrollTrigger);
 
+  const isTouch =
+    typeof window !== "undefined" &&
+    ("ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches);
+
   const lenis = new LenisClass({
-    duration: 1.2,
+    duration: isTouch ? 0.6 : 0.85,
     easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     orientation: "vertical",
     gestureOrientation: "vertical",
     smoothWheel: true,
+    syncTouch: true,
+    touchMultiplier: 1.0,
+    wheelMultiplier: 1.05,
   });
 
   // Sync Lenis scroll position with ScrollTrigger
