@@ -23,38 +23,38 @@ import {
  * Bottom: Full-width rounded stats capsule (200+ Stories, 11+ Years, 4.9 ★ Ratings).
  */
 
-// Curated 24 high-res wedding photos from public/media/
+// Curated 24 high-res wedding photos from public/media/ (optimized WebP)
 const COL_1_PHOTOS = [
-  "/media/658342707_18345437518213275_4643074072632916732_n.jpg",
-  "/media/658854606_18344786011213275_8789297992173618236_n.jpg",
-  "/media/634155514_18339191569213275_1527773574703593361_n.jpg",
-  "/media/669547191_18346326103213275_170584385173151797_n.jpg",
-  "/media/670144287_18347588611213275_4390319269067749447_n..jpg",
-  "/media/670445648_18347588638213275_8266084814368532314_n..jpg",
-  "/media/671127604_18347588581213275_1370585711998979617_n.jpg",
-  "/media/762475435_18362264362213275_4037154776965255808_n.jpg",
+  "/media/658342707_18345437518213275_4643074072632916732_n.webp",
+  "/media/658854606_18344786011213275_8789297992173618236_n.webp",
+  "/media/634155514_18339191569213275_1527773574703593361_n.webp",
+  "/media/669547191_18346326103213275_170584385173151797_n.webp",
+  "/media/670144287_18347588611213275_4390319269067749447_n.webp",
+  "/media/670445648_18347588638213275_8266084814368532314_n.webp",
+  "/media/671127604_18347588581213275_1370585711998979617_n.webp",
+  "/media/762475435_18362264362213275_4037154776965255808_n.webp",
 ];
 
 const COL_2_PHOTOS = [
-  "/media/hero-photo.jpg", // Star portrait: bride in red lehenga & groom in cream sherwani
-  "/media/670434112_18347478913213275_3652673986511226749_n.jpg",
-  "/media/657701808_18345817549213275_2174793956474839260_n.jpg",
-  "/media/670215524_18347588701213275_6454788200647322258_n..jpg",
-  "/media/636985358_18339401398213275_2000453047405081442_n.jpg",
-  "/media/671067093_18347588593213275_7704476978487218991_n.jpg",
-  "/media/669906267_18347588671213275_660823139771868494_n..jpg",
-  "/media/758730957_18361512241213275_4920520672571970349_n.jpg",
+  "/media/hero-photo.webp", // Star portrait: bride in red lehenga & groom in cream sherwani
+  "/media/670434112_18347478913213275_3652673986511226749_n.webp",
+  "/media/657701808_18345817549213275_2174793956474839260_n.webp",
+  "/media/670215524_18347588701213275_6454788200647322258_n.webp",
+  "/media/636985358_18339401398213275_2000453047405081442_n.webp",
+  "/media/671067093_18347588593213275_7704476978487218991_n.webp",
+  "/media/669906267_18347588671213275_660823139771868494_n.webp",
+  "/media/758730957_18361512241213275_4920520672571970349_n.webp",
 ];
 
 const COL_3_PHOTOS = [
-  "/media/656290104_18344915914213275_541231953036252694_n.jpg",
-  "/media/670874657_18347699566213275_545745951307292834_n.jpg",
-  "/media/657664418_18345102004213275_2807622205563018235_n.jpg",
-  "/media/670401366_18347588683213275_7507402731648992137_n..jpg",
-  "/media/669742843_18346875676213275_5279556379386879834_n.jpg",
-  "/media/670679376_18347588629213275_1141641074923280675_n..jpg",
-  "/media/673877650_18348469795213275_8937251723405448163_n.jpg",
-  "/media/733263593_18358287217213275_466382122896676717_n.jpg",
+  "/media/656290104_18344915914213275_541231953036252694_n.webp",
+  "/media/670874657_18347699566213275_545745951307292834_n.webp",
+  "/media/657664418_18345102004213275_2807622205563018235_n.webp",
+  "/media/670401366_18347588683213275_7507402731648992137_n.webp",
+  "/media/669742843_18346875676213275_5279556379386879834_n.webp",
+  "/media/670679376_18347588629213275_1141641074923280675_n.webp",
+  "/media/673877650_18348469795213275_8937251723405448163_n.webp",
+  "/media/733263593_18358287217213275_466382122896676717_n.webp",
 ];
 
 export default function Hero() {
@@ -154,7 +154,8 @@ export default function Hero() {
                       fill
                       sizes="(max-width: 768px) 45vw, 18vw"
                       unoptimized
-                      priority={i < 3}
+                      priority={i < 2}
+                      loading={i < 2 ? "eager" : "lazy"}
                       style={{ objectFit: "cover", objectPosition: "center" }}
                     />
                   </div>
@@ -190,7 +191,8 @@ export default function Hero() {
                       fill
                       sizes="(max-width: 768px) 45vw, 18vw"
                       unoptimized
-                      priority={i < 3}
+                      priority={i < 2}
+                      loading={i < 2 ? "eager" : "lazy"}
                       style={{ objectFit: "cover", objectPosition: "center" }}
                     />
                   </div>
@@ -226,7 +228,8 @@ export default function Hero() {
                       fill
                       sizes="(max-width: 768px) 45vw, 18vw"
                       unoptimized
-                      priority={i < 3}
+                      priority={i < 2}
+                      loading={i < 2 ? "eager" : "lazy"}
                       style={{ objectFit: "cover", objectPosition: "center" }}
                     />
                   </div>
@@ -402,7 +405,7 @@ export default function Hero() {
                 }}
               >
                 <Image
-                  src="/media/658342707_18345437518213275_4643074072632916732_n.jpg"
+                  src="/media/658342707_18345437518213275_4643074072632916732_n.webp"
                   alt="Happy Wedding Couple"
                   fill
                   sizes="34px"
@@ -423,7 +426,7 @@ export default function Hero() {
                 }}
               >
                 <Image
-                  src="/media/hero-photo.jpg"
+                  src="/media/hero-photo.webp"
                   alt="Happy Wedding Couple"
                   fill
                   sizes="34px"
@@ -444,7 +447,7 @@ export default function Hero() {
                 }}
               >
                 <Image
-                  src="/media/670215524_18347588701213275_6454788200647322258_n..jpg"
+                  src="/media/670215524_18347588701213275_6454788200647322258_n.webp"
                   alt="Happy Wedding Couple"
                   fill
                   sizes="34px"

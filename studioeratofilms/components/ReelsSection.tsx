@@ -1,21 +1,49 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { reels } from "@/lib/data";
 import { Volume2, VolumeX, Sparkles } from "lucide-react";
 
 /**
  * ReelsSection — 4 × 9:16 portrait reel cards
  *
- * Videos autoplay in an infinite seamless loop (muted by default).
+ * Videos autoplay in an infinite seamless loop when scrolled into view (muted by default).
  * Clicking any reel toggles audio for that reel!
  * Desktop: horizontal row of 4 cards
  * Mobile: smooth horizontal scroll with snap
  */
 export default function ReelsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [unmutedId, setUnmutedId] = useState<string | null>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          videoRefs.current.forEach((v) => {
+            if (v && v.paused) {
+              v.play().catch(() => {});
+            }
+          });
+        } else {
+          videoRefs.current.forEach((v) => {
+            if (v && !v.paused) {
+              v.pause();
+            }
+          });
+        }
+      },
+      { rootMargin: "350px 0px" }
+    );
+
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const toggleAudio = (reelId: string, index: number) => {
     const vid = videoRefs.current[index];
@@ -37,6 +65,7 @@ export default function ReelsSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="reels"
       aria-labelledby="reels-heading"
       style={{
@@ -119,16 +148,16 @@ export default function ReelsSection() {
               aria-label={`Toggle audio for reel: ${reel.title}`}
               tabIndex={0}
             >
-              {/* Autoplay Loop Video */}
+              {/* Autoplay Loop Video — loaded when scrolled near */}
               <video
                 ref={(el) => { videoRefs.current[index] = el; }}
-                src={reel.videoUrl}
+                src={isInView ? reel.videoUrl : undefined}
                 poster={reel.poster}
-                autoPlay
+                autoPlay={isInView}
                 loop
                 muted={!isUnmuted}
                 playsInline
-                preload="auto"
+                preload="metadata"
                 style={{
                   width: "100%",
                   height: "100%",

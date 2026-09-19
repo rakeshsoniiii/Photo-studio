@@ -73,7 +73,7 @@ export default function FilmsSection() {
               src={featuredFilm.poster}
               alt={`${featuredFilm.couple} — ${featuredFilm.destination}`}
               fill
-              priority
+              loading="lazy"
               sizes="(max-width: 768px) 95vw, 85vw"
               style={{
                 objectFit: "cover",

@@ -235,7 +235,7 @@ export default function HorizontalGallery() {
                 src={slide.src}
                 alt={slide.title}
                 fill
-                priority={index < 4}
+                loading="lazy"
                 unoptimized
                 sizes="100vw"
                 style={{
